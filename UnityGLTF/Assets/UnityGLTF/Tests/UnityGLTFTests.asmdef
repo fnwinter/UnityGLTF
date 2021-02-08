@@ -1,12 +1,18 @@
 {
     "name": "UnityGLTFTests",
+    "references": [
+        "UnityGLTFScripts",
+        "UnityGLTFEditor",
+        "GLTFSerialization"
+    ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
-    "references": [
-        "UnityGLTFScripts",
-        "UnityGLTFEditor"
-    ],
     "includePlatforms": [],
-    "excludePlatforms": []
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }

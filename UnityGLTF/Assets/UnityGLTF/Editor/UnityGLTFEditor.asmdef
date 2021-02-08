@@ -1,7 +1,8 @@
 {
     "name": "UnityGLTFEditor",
     "references": [
-        "UnityGLTFScripts"
+        "UnityGLTFScripts",
+        "GLTFSerialization"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

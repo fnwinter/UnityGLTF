@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45030326, g: 0.49799633, b: 0.5628027, a: 1}
+  m_IndirectSpecularColor: {r: 0.45030367, g: 0.49799693, b: 0.56280375, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -181,7 +181,7 @@ PrefabInstance:
     - target: {fileID: 114000010638385648, guid: 5255039e40b37b14fbcc0b72a30fc62e,
         type: 3}
       propertyPath: GLTFUri
-      value: http://localhost:8080/glTF-Sample-Models/2.0/AnimatedCube/glTF/AnimatedCube.gltf
+      value: http://localhost:8090/2.0/AnimatedCube/glTF/AnimatedCube.gltf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5255039e40b37b14fbcc0b72a30fc62e, type: 3}

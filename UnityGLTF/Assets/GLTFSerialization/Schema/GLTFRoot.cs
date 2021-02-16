@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using GLTF.Extensions;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace GLTF.Schema
 {
@@ -295,6 +296,8 @@ namespace GLTF.Schema
 						root.Animations = jsonReader.ReadList(() => GLTFAnimation.Deserialize(root, jsonReader));
 						break;
 					case "asset":
+						string _object;
+						GLTFJsonParser.ReadObject(textReader,out _object);
 						root.Asset = Asset.Deserialize(root, jsonReader);
 						break;
 					case "buffers":

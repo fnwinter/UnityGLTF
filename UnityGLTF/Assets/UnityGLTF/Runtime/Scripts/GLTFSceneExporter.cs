@@ -114,7 +114,7 @@ namespace UnityGLTF
 				Accessors = new List<Accessor>(),
 				Asset = new Asset
 				{
-					Version = "2.0"
+					version = "2.0"
 				},
 				Buffers = new List<GLTFBuffer>(),
 				BufferViews = new List<BufferView>(),

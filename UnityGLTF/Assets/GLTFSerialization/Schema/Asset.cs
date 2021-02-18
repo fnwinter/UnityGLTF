@@ -1,32 +1,34 @@
 using System;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace GLTF.Schema
 {
 	/// <summary>
 	/// Metadata about the glTF asset.
 	/// </summary>
+	[SerializeField]
 	public class Asset : GLTFProperty
 	{
 		/// <summary>
 		/// A copyright message suitable for display to credit the content creator.
 		/// </summary>
-		public string Copyright;
+		public string copyright;
 
 		/// <summary>
 		/// Tool that generated this glTF model. Useful for debugging.
 		/// </summary>
-		public string Generator;
+		public string generator;
 
 		/// <summary>
 		/// The glTF version.
 		/// </summary>
-		public string Version;
+		public string version;
 
 		/// <summary>
 		/// The minimum glTF version that this asset targets.
 		/// </summary>
-		public string MinVersion;
+		public string minVersion;
 
 		public Asset()
 		{
@@ -36,10 +38,10 @@ namespace GLTF.Schema
 		{
 			if (asset == null) return;
 
-			Copyright = asset.Copyright;
-			Generator = asset.Generator;
-			Version = asset.Version;
-			MinVersion = asset.MinVersion;
+			copyright = asset.copyright;
+			generator = asset.generator;
+			version = asset.version;
+			minVersion = asset.minVersion;
 		}
 
 		public static Asset Deserialize(GLTFRoot root, JsonReader reader)
@@ -58,16 +60,16 @@ namespace GLTF.Schema
 				switch (curProp)
 				{
 					case "copyright":
-						asset.Copyright = reader.ReadAsString();
+						asset.copyright = reader.ReadAsString();
 						break;
 					case "generator":
-						asset.Generator = reader.ReadAsString();
+						asset.generator = reader.ReadAsString();
 						break;
 					case "version":
-						asset.Version = reader.ReadAsString();
+						asset.version = reader.ReadAsString();
 						break;
 					case "minVersion":
-						asset.MinVersion = reader.ReadAsString();
+						asset.minVersion = reader.ReadAsString();
 						break;
 					default:
 						asset.DefaultPropertyDeserializer(root, reader);
@@ -82,20 +84,20 @@ namespace GLTF.Schema
 		{
 			writer.WriteStartObject();
 
-			if (Copyright != null)
+			if (copyright != null)
 			{
 				writer.WritePropertyName("copyright");
-				writer.WriteValue(Copyright);
+				writer.WriteValue(copyright);
 			}
 
-			if (Generator != null)
+			if (generator != null)
 			{
 				writer.WritePropertyName("generator");
-				writer.WriteValue(Generator);
+				writer.WriteValue(generator);
 			}
 
 			writer.WritePropertyName("version");
-			writer.WriteValue(Version);
+			writer.WriteValue(version);
 
 			base.Serialize(writer);
 

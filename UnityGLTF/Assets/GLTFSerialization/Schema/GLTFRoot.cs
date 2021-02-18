@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using GLTF.Extensions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 namespace GLTF.Schema
@@ -269,6 +270,13 @@ namespace GLTF.Schema
 
 		public static GLTFRoot Deserialize(TextReader textReader)
 		{
+			var jsonText = textReader.ReadToEnd();
+			var sr = textReader as StreamReader;
+			sr.BaseStream.Seek(0, SeekOrigin.Begin);
+			sr.DiscardBufferedData();
+
+			JObject jo = JObject.Parse(jsonText);
+
 			var jsonReader = new JsonTextReader(textReader);
 			var root = new GLTFRoot();
 
@@ -296,7 +304,10 @@ namespace GLTF.Schema
 						root.Animations = jsonReader.ReadList(() => GLTFAnimation.Deserialize(root, jsonReader));
 						break;
 					case "asset":
-						root.Asset = Asset.Deserialize(root, jsonReader);
+						var asset = jo["asset"].ToString();
+						root.Asset = JsonUtility.FromJson<Asset>(asset);
+						// will be deleted
+						Asset.Deserialize(root, jsonReader);
 						break;
 					case "buffers":
 						root.Buffers = jsonReader.ReadList(() => GLTFBuffer.Deserialize(root, jsonReader));

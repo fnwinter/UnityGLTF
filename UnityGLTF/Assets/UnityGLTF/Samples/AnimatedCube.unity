@@ -181,7 +181,7 @@ PrefabInstance:
     - target: {fileID: 114000010638385648, guid: 5255039e40b37b14fbcc0b72a30fc62e,
         type: 3}
       propertyPath: GLTFUri
-      value: http://localhost:8080/glTF-Sample-Models/2.0/AnimatedCube/glTF/AnimatedCube.gltf
+      value: http://localhost:8080/glTF-Sample-Models/2.0/Cameras/glTF/Cameras.gltf
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5255039e40b37b14fbcc0b72a30fc62e, type: 3}

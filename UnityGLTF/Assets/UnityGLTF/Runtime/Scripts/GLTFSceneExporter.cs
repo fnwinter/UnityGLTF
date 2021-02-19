@@ -545,39 +545,39 @@ namespace UnityGLTF
 			{
 				CameraOrthographic ortho = new CameraOrthographic();
 
-				ortho.XMag = 1 / matrix[0, 0];
-				ortho.YMag = 1 / matrix[1, 1];
+				ortho.xmag = 1 / matrix[0, 0];
+				ortho.ymag = 1 / matrix[1, 1];
 
 				float farClip = (matrix[2, 3] / matrix[2, 2]) - (1 / matrix[2, 2]);
 				float nearClip = farClip + (2 / matrix[2, 2]);
-				ortho.ZFar = farClip;
-				ortho.ZNear = nearClip;
+				ortho.zfar = farClip;
+				ortho.znear = nearClip;
 
-				camera.Orthographic = ortho;
+				camera.orthographic = ortho;
 			}
 			else
 			{
 				CameraPerspective perspective = new CameraPerspective();
 				float fov = 2 * Mathf.Atan(1 / matrix[1, 1]);
 				float aspectRatio = matrix[1, 1] / matrix[0, 0];
-				perspective.YFov = fov;
-				perspective.AspectRatio = aspectRatio;
+				perspective.yfov = fov;
+				perspective.aspectRatio = aspectRatio;
 
 				if (matrix[2, 2] == -1)
 				{
 					//infinite projection matrix
 					float nearClip = matrix[2, 3] * -0.5f;
-					perspective.ZNear = nearClip;
+					perspective.znear = nearClip;
 				}
 				else
 				{
 					//finite projection matrix
 					float farClip = matrix[2, 3] / (matrix[2, 2] + 1);
 					float nearClip = farClip * (matrix[2, 2] + 1) / (matrix[2, 2] - 1);
-					perspective.ZFar = farClip;
-					perspective.ZNear = nearClip;
+					perspective.zfar = farClip;
+					perspective.znear = nearClip;
 				}
-				camera.Perspective = perspective;
+				camera.perspective = perspective;
 			}
 
 			var id = new CameraId

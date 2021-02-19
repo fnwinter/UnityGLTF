@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace GLTF.Schema
 {
@@ -6,19 +7,21 @@ namespace GLTF.Schema
 	/// A camera's projection.  A node can reference a camera to apply a transform
 	/// to place the camera in the scene
 	/// </summary>
+	[SerializeField]
 	public class GLTFCamera : GLTFChildOfRootProperty
 	{
 		/// <summary>
 		/// An orthographic camera containing properties to create an orthographic
 		/// projection matrix.
 		/// </summary>
-		public CameraOrthographic Orthographic;
+		public CameraOrthographic orthographic;
 
 		/// <summary>
 		/// A perspective camera containing properties to create a perspective
 		/// projection matrix.
 		/// </summary>
-		public CameraPerspective Perspective;
+		public CameraPerspective perspective;
+		public string type;
 
 		/// <summary>
 		/// Specifies if the camera uses a perspective or orthographic projection.
@@ -35,14 +38,14 @@ namespace GLTF.Schema
 		{
 			if (camera == null) return;
 
-			if (camera.Orthographic != null)
+			if (camera.orthographic != null)
 			{
-				Orthographic = new CameraOrthographic(camera.Orthographic);
+				orthographic = new CameraOrthographic(camera.orthographic);
 			}
 
-			if (camera.Perspective != null)
+			if (camera.perspective != null)
 			{
-				Perspective = new CameraPerspective(camera.Perspective);
+				perspective = new CameraPerspective(camera.perspective);
 			}
 
 			Type = camera.Type;
@@ -59,10 +62,10 @@ namespace GLTF.Schema
 				switch (curProp)
 				{
 					case "orthographic":
-						camera.Orthographic = CameraOrthographic.Deserialize(root, reader);
+						camera.orthographic = CameraOrthographic.Deserialize(root, reader);
 						break;
 					case "perspective":
-						camera.Perspective = CameraPerspective.Deserialize(root, reader);
+						camera.perspective = CameraPerspective.Deserialize(root, reader);
 						break;
 					default:
 						camera.DefaultPropertyDeserializer(root, reader);
@@ -77,16 +80,16 @@ namespace GLTF.Schema
 		{
 			writer.WriteStartObject();
 
-			if (Orthographic != null)
+			if (orthographic != null)
 			{
 				writer.WritePropertyName("orthographic");
-				Orthographic.Serialize(writer);
+				orthographic.Serialize(writer);
 			}
 
-			if (Perspective != null)
+			if (perspective != null)
 			{
 				writer.WritePropertyName("perspective");
-				Perspective.Serialize(writer);
+				perspective.Serialize(writer);
 			}
 
 			writer.WritePropertyName("type");

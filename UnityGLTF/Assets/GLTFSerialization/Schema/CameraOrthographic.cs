@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace GLTF.Schema
 {
@@ -7,27 +8,28 @@ namespace GLTF.Schema
 	/// An orthographic camera containing properties to create an orthographic
 	/// projection matrix.
 	/// </summary>
+	[SerializeField]
 	public class CameraOrthographic : GLTFProperty
 	{
 		/// <summary>
 		/// The floating-point horizontal magnification of the view.
 		/// </summary>
-		public double XMag;
+		public double xmag;
 
 		/// <summary>
 		/// The floating-point vertical magnification of the view.
 		/// </summary>
-		public double YMag;
+		public double ymag;
 
 		/// <summary>
 		/// The floating-point distance to the far clipping plane.
 		/// </summary>
-		public double ZFar;
+		public double zfar;
 
 		/// <summary>
 		/// The floating-point distance to the near clipping plane.
 		/// </summary>
-		public double ZNear;
+		public double znear;
 
 		public CameraOrthographic()
 		{
@@ -35,10 +37,10 @@ namespace GLTF.Schema
 
 		public CameraOrthographic(CameraOrthographic cameraOrthographic) : base(cameraOrthographic)
 		{
-			XMag = cameraOrthographic.XMag;
-			YMag = cameraOrthographic.YMag;
-			ZFar = cameraOrthographic.ZFar;
-			ZNear = cameraOrthographic.ZNear;
+			xmag = cameraOrthographic.xmag;
+			ymag = cameraOrthographic.ymag;
+			zfar = cameraOrthographic.zfar;
+			znear = cameraOrthographic.znear;
 		}
 
 		public static CameraOrthographic Deserialize(GLTFRoot root, JsonReader reader)
@@ -57,16 +59,16 @@ namespace GLTF.Schema
 				switch (curProp)
 				{
 					case "xmag":
-						cameraOrthographic.XMag = reader.ReadAsDouble().Value;
+						cameraOrthographic.xmag = reader.ReadAsDouble().Value;
 						break;
 					case "ymag":
-						cameraOrthographic.YMag = reader.ReadAsDouble().Value;
+						cameraOrthographic.ymag = reader.ReadAsDouble().Value;
 						break;
 					case "zfar":
-						cameraOrthographic.ZFar = reader.ReadAsDouble().Value;
+						cameraOrthographic.zfar = reader.ReadAsDouble().Value;
 						break;
 					case "znear":
-						cameraOrthographic.ZNear = reader.ReadAsDouble().Value;
+						cameraOrthographic.znear = reader.ReadAsDouble().Value;
 						break;
 					default:
 						cameraOrthographic.DefaultPropertyDeserializer(root, reader);
@@ -82,16 +84,16 @@ namespace GLTF.Schema
 			writer.WriteStartObject();
 
 			writer.WritePropertyName("xmag");
-			writer.WriteValue(XMag);
+			writer.WriteValue(xmag);
 
 			writer.WritePropertyName("ymag");
-			writer.WriteValue(YMag);
+			writer.WriteValue(ymag);
 
 			writer.WritePropertyName("zfar");
-			writer.WriteValue(ZFar);
+			writer.WriteValue(zfar);
 
 			writer.WritePropertyName("znear");
-			writer.WriteValue(ZNear);
+			writer.WriteValue(znear);
 
 			base.Serialize(writer);
 

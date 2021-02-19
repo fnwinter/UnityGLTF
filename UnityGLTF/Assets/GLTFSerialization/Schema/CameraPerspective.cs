@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using UnityEngine;
 
 namespace GLTF.Schema
 {
@@ -7,6 +8,7 @@ namespace GLTF.Schema
 	/// A perspective camera containing properties to create a perspective projection
 	/// matrix.
 	/// </summary>
+	[SerializeField]
 	public class CameraPerspective : GLTFProperty
 	{
 		/// <summary>
@@ -14,13 +16,13 @@ namespace GLTF.Schema
 		/// When this is undefined, the aspect ratio of the canvas is used.
 		/// <minimum>0.0</minimum>
 		/// </summary>
-		public double AspectRatio;
+		public double aspectRatio;
 
 		/// <summary>
 		/// The floating-point vertical field of view in radians.
 		/// <minimum>0.0</minimum>
 		/// </summary>
-		public double YFov;
+		public double yfov;
 
 		/// <summary>
 		/// The floating-point distance to the far clipping plane. When defined,
@@ -28,13 +30,13 @@ namespace GLTF.Schema
 		/// If `zfar` is undefined, runtime must use infinite projection matrix.
 		/// <minimum>0.0</minimum>
 		/// </summary>
-		public double ZFar = double.PositiveInfinity;
+		public double zfar = double.PositiveInfinity;
 
 		/// <summary>
 		/// The floating-point distance to the near clipping plane.
 		/// <minimum>0.0</minimum>
 		/// </summary>
-		public double ZNear;
+		public double znear;
 
 		public CameraPerspective()
 		{
@@ -44,10 +46,10 @@ namespace GLTF.Schema
 		{
 			if (cameraPerspective == null) return;
 
-			AspectRatio = cameraPerspective.AspectRatio;
-			YFov = cameraPerspective.YFov;
-			ZFar = cameraPerspective.ZFar;
-			ZNear = cameraPerspective.ZNear;
+			aspectRatio = cameraPerspective.aspectRatio;
+			yfov = cameraPerspective.yfov;
+			zfar = cameraPerspective.zfar;
+			znear = cameraPerspective.znear;
 		}
 
 		public static CameraPerspective Deserialize(GLTFRoot root, JsonReader reader)
@@ -66,16 +68,16 @@ namespace GLTF.Schema
 				switch (curProp)
 				{
 					case "aspectRatio":
-						cameraPerspective.AspectRatio = reader.ReadAsDouble().Value;
+						cameraPerspective.aspectRatio = reader.ReadAsDouble().Value;
 						break;
 					case "yfov":
-						cameraPerspective.YFov = reader.ReadAsDouble().Value;
+						cameraPerspective.yfov = reader.ReadAsDouble().Value;
 						break;
 					case "zfar":
-						cameraPerspective.ZFar = reader.ReadAsDouble().Value;
+						cameraPerspective.zfar = reader.ReadAsDouble().Value;
 						break;
 					case "znear":
-						cameraPerspective.ZNear = reader.ReadAsDouble().Value;
+						cameraPerspective.znear = reader.ReadAsDouble().Value;
 						break;
 					default:
 						cameraPerspective.DefaultPropertyDeserializer(root, reader);
@@ -90,23 +92,23 @@ namespace GLTF.Schema
 		{
 			writer.WriteStartObject();
 
-			if (AspectRatio != 0)
+			if (aspectRatio != 0)
 			{
 				writer.WritePropertyName("aspectRatio");
-				writer.WriteValue(AspectRatio);
+				writer.WriteValue(aspectRatio);
 			}
 
 			writer.WritePropertyName("yfov");
-			writer.WriteValue(YFov);
+			writer.WriteValue(yfov);
 
-			if (ZFar != double.PositiveInfinity)
+			if (zfar != double.PositiveInfinity)
 			{
 				writer.WritePropertyName("zfar");
-				writer.WriteValue(ZFar);
+				writer.WriteValue(zfar);
 			}
 
 			writer.WritePropertyName("znear");
-			writer.WriteValue(ZNear);
+			writer.WriteValue(znear);
 
 			base.Serialize(writer);
 

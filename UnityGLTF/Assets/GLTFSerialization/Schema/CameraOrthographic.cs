@@ -8,7 +8,7 @@ namespace GLTF.Schema
 	/// An orthographic camera containing properties to create an orthographic
 	/// projection matrix.
 	/// </summary>
-	[SerializeField]
+	[System.Serializable]
 	public class CameraOrthographic : GLTFProperty
 	{
 		/// <summary>

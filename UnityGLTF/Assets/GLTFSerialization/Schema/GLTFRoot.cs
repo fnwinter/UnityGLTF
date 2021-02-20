@@ -316,11 +316,13 @@ namespace GLTF.Schema
 						root.BufferViews = jsonReader.ReadList(() => BufferView.Deserialize(root, jsonReader));
 						break;
 					case "cameras":
-						foreach(var camera in jo["cameras"])
+						root.Cameras = new List<GLTFCamera>();
+						foreach (var camera in jo["cameras"])
 						{
-							var c = JsonUtility.FromJson<GLTFCamera>(camera.ToString());
-							Debug.Log(c.perspective);
+							GLTFCamera c = JsonUtility.FromJson<GLTFCamera>(camera.ToString());
+							root.Cameras.Append(c);
 						}
+						// will be deleted
 						jsonReader.ReadList(() => GLTFCamera.Deserialize(root, jsonReader));
 						break;
 					case "images":

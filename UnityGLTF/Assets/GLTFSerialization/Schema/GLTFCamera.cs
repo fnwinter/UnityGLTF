@@ -10,6 +10,8 @@ namespace GLTF.Schema
 	[SerializeField]
 	public class GLTFCamera : GLTFChildOfRootProperty
 	{
+		public string type;
+
 		/// <summary>
 		/// An orthographic camera containing properties to create an orthographic
 		/// projection matrix.
@@ -21,7 +23,6 @@ namespace GLTF.Schema
 		/// projection matrix.
 		/// </summary>
 		public CameraPerspective perspective;
-		public string type;
 
 		/// <summary>
 		/// Specifies if the camera uses a perspective or orthographic projection.
@@ -93,7 +94,7 @@ namespace GLTF.Schema
 			}
 
 			writer.WritePropertyName("type");
-			writer.WriteValue(Type.ToString());
+			writer.WriteValue(type);
 
 			base.Serialize(writer);
 

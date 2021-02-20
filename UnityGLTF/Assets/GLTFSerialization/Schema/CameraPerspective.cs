@@ -8,7 +8,7 @@ namespace GLTF.Schema
 	/// A perspective camera containing properties to create a perspective projection
 	/// matrix.
 	/// </summary>
-	[SerializeField]
+	[System.Serializable]
 	public class CameraPerspective : GLTFProperty
 	{
 		/// <summary>
